@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -49,24 +49,24 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: #f5f7ff;
+  --foreground: #051323;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --primary: #1233f0;
+  --primary-foreground: #ffffff;
+  --secondary: #e9eeff;
+  --secondary-foreground: #051323;
+  --muted: #eef1fb;
+  --muted-foreground: #546075;
+  --accent: #dbe4ff;
+  --accent-foreground: #051323;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #dfe5f6;
+  --input: #dfe5f6;
+  --ring: #8da2ff;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -126,5 +126,309 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .habi-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f7f8ff 0%, #ffffff 36%, #f7faff 100%);
+  }
+
+  .habi-container {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .habi-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e9edf7;
+  }
+
+  .habi-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .habi-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .habi-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: #344056;
+  }
+
+  .habi-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .habi-login {
+    color: #344056;
+    font-weight: 500;
+  }
+
+  .habi-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .habi-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .habi-btn-primary {
+    background: #1233f0;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(18, 51, 240, 0.2);
+  }
+
+  .habi-btn-outline {
+    border: 1px solid #1233f0;
+    color: #1233f0;
+    background: #fff;
+  }
+
+  .habi-hero {
+    padding: 4.5rem 0 2.5rem;
+  }
+
+  .habi-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .habi-hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+
+  .habi-hero p {
+    color: #4c5970;
+    max-width: 56ch;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .habi-hero-card {
+    border: 1px solid #e1e7f6;
+    border-radius: 24px;
+    padding: 1.25rem;
+    background: #fff;
+    box-shadow: 0 20px 46px rgba(5, 19, 35, 0.08);
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .habi-hero-pill {
+    background: #f0f3ff;
+    border-radius: 999px;
+    padding: 0.5rem 0.75rem;
+    width: fit-content;
+  }
+
+  .habi-hero-pill.active {
+    background: #1233f0;
+    color: #fff;
+  }
+
+  .habi-section {
+    padding: 2.5rem 0;
+  }
+
+  .habi-section-head {
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+  }
+
+  .habi-section h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+
+  .habi-section-head p {
+    color: #4c5970;
+  }
+
+  .habi-services {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .habi-service-card,
+  .habi-feature-card,
+  .habi-review-card {
+    border: 1px solid #e3e8f6;
+    border-radius: 18px;
+    background: #fff;
+    padding: 1.25rem;
+    box-shadow: 0 10px 26px rgba(5, 19, 35, 0.05);
+  }
+
+  .habi-service-card h3,
+  .habi-feature-card h3,
+  .habi-review-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .habi-service-card p,
+  .habi-feature-card p,
+  .habi-review-card p {
+    color: #4c5970;
+  }
+
+  .habi-service-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .habi-link {
+    color: #1233f0;
+    font-weight: 600;
+  }
+
+  .habi-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .habi-center {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .habi-reviews {
+    background: #eef3ff;
+  }
+
+  .habi-testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .habi-privacy {
+    background: #e9f8ee;
+    border-top: 1px solid #bfe7cb;
+    border-bottom: 1px solid #bfe7cb;
+    padding: 1.2rem 0;
+  }
+
+  .habi-privacy h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .habi-privacy p {
+    color: #375044;
+    margin-bottom: 0.25rem;
+  }
+
+  .habi-privacy a {
+    color: #2f9f52;
+    font-weight: 600;
+  }
+
+  .habi-footer {
+    background: #fff;
+    padding: 2.5rem 0 1.25rem;
+  }
+
+  .habi-footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .habi-footer-top p {
+    color: #4c5970;
+    margin-top: 0.5rem;
+  }
+
+  .habi-footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+
+  .habi-footer-links h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .habi-footer-links a {
+    display: block;
+    color: #4c5970;
+    margin-bottom: 0.3rem;
+  }
+
+  .habi-footer-bottom {
+    border-top: 1px solid #e4e8f6;
+    padding-top: 0.9rem;
+    color: #6a7489;
+    font-size: 0.86rem;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .habi-cookies {
+    position: sticky;
+    bottom: 0;
+    background: #051323;
+    color: #fff;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 980px) {
+    .habi-nav-links {
+      display: none;
+    }
+    .habi-hero-grid,
+    .habi-services,
+    .habi-features,
+    .habi-testimonials,
+    .habi-footer-top,
+    .habi-footer-links {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+    .habi-footer-top {
+      gap: 1rem;
+    }
   }
 }
